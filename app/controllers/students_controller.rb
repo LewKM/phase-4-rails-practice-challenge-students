@@ -12,5 +12,16 @@ class StudentsController < ApplicationController
             render json: {error: "Student not found."}, status: 404
         end
     end
+
+    def create
+        student = Student.create(student_params)
+        render json: student, status: 201
+    end
+
+    private
+
+    def student_params
+        params.permit(:name, :age, :major, :instructor_id)
+    end
 end
 
