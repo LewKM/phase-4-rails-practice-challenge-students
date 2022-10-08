@@ -13,4 +13,16 @@ class InstructorsController < ApplicationController
             render json: {error: "Instructor not found."}, status: 404
         end
     end
+
+    def create
+        instructor = Instructor.create(instructor_params)
+        render json: instructor, status: 201
+    end
+
+    private
+
+    def instructor_params
+        params.permit(:name)
+    end
+    
  end
