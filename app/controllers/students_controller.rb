@@ -18,6 +18,16 @@ class StudentsController < ApplicationController
         render json: student, status: 201
     end
 
+    def update
+        student = Student.find(params[:id])
+        if student
+            student.update(student_params)
+            render json: student, status: 200
+        else
+            render json: {error: "Student not found."}, status: 404
+        end
+    end
+
     private
 
     def student_params
