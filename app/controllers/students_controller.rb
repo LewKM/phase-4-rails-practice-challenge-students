@@ -28,6 +28,15 @@ class StudentsController < ApplicationController
         end
     end
 
+    def destroy
+        student = Student.find(params[:id])
+        if student
+            student.destroy
+            head :no_content
+        end
+    end
+    
+
     private
 
     def student_params
