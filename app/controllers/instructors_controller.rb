@@ -19,6 +19,16 @@ class InstructorsController < ApplicationController
         render json: instructor, status: 201
     end
 
+    def update
+        instructor = Instructor.find(params[:id])
+        if instructor
+            instructor.update(instructor_params)
+            render json: instructor, status: 200
+        else
+            render json: {error: "Instructor not found."}, status: 404
+        end
+    end
+
     private
 
     def instructor_params
